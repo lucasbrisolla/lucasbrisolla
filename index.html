@@ -5,174 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>(ab²house) — Sua marca na audiência certa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --red: #C8102E;
-    --red-dark: #8B0B1F;
-    --red-glow: rgba(200,16,46,0.2);
-    --black: #0a0a0a;
-    --black2: #111;
-    --black3: #161616;
-    --card: #131313;
-    --border: rgba(255,255,255,0.07);
-    --border-red: rgba(200,16,46,0.25);
-    --text: #e0e0e0;
-    --muted: #666;
+    --red-light: rgba(200,16,46,0.07);
+    --red-mid: rgba(200,16,46,0.15);
+    --black: #0f0f0f;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --muted: #999;
+    --light: #f4f4f4;
+    --lighter: #f9f9f9;
     --white: #ffffff;
+    --border: #e5e5e5;
+    --border-dark: #ccc;
     --nav-h: 70px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--black);
-    color: var(--text);
+    background: var(--white);
+    color: var(--dark);
     font-family: 'Barlow', sans-serif;
-    font-weight: 400;
     overflow-x: hidden;
   }
 
   ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-track { background: var(--white); }
   ::-webkit-scrollbar-thumb { background: var(--red); }
 
-  /* NOISE */
-  body::after {
-    content: '';
-    position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    opacity: 0.5;
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     height: var(--nav-h);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 52px;
-    background: rgba(10,10,10,0.92);
+    background: rgba(255,255,255,0.96);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
+    transition: box-shadow 0.3s;
   }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
 
   .logo {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.5rem; font-weight: 900;
-    color: var(--white); text-decoration: none;
-    letter-spacing: -0.02em;
+    color: var(--black); text-decoration: none; letter-spacing: -0.02em;
   }
   .logo span { color: var(--red); }
-  .logo sup { font-size: 0.7em; vertical-align: super; }
+  .logo sup { font-size: 0.65em; vertical-align: super; }
 
-  .nav-links {
-    display: flex; align-items: center; gap: 36px;
-    list-style: none;
-  }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
   .nav-links a {
     color: var(--muted); text-decoration: none;
-    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase; transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--white); }
-
+  .nav-links a:hover { color: var(--dark); }
   .nav-cta {
-    background: var(--red); color: var(--white) !important;
-    padding: 10px 24px; border-radius: 2px;
-    font-weight: 700 !important;
-    transition: background 0.2s, transform 0.2s !important;
+    background: var(--red) !important; color: var(--white) !important;
+    padding: 10px 24px;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
   }
-  .nav-cta:hover { background: #e01535 !important; }
+  .nav-cta:hover { background: #a80d26 !important; }
 
-  /* ── HERO ── */
+  /* HERO */
   #hero {
     min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
     padding-top: var(--nav-h);
+    overflow: hidden;
   }
 
   .hero-left {
-    background: var(--black);
+    padding: 80px 52px;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 52px 80px 52px;
-    position: relative; z-index: 2;
+    background: var(--white); position: relative; z-index: 2;
   }
-
-  .hero-right {
-    background: var(--red);
-    position: relative; overflow: hidden;
-    display: flex; align-items: flex-end;
-  }
-
-  /* diagonal cut between halves */
   .hero-left::after {
     content: '';
-    position: absolute; right: -40px; top: 0; bottom: 0;
-    width: 80px;
-    background: var(--black);
+    position: absolute; right: -40px; top: 0; bottom: 0; width: 80px;
+    background: var(--white);
     clip-path: polygon(0 0, 100% 0, 0 100%);
     z-index: 3;
   }
 
+  .hero-right {
+    background: var(--red); position: relative;
+    overflow: hidden; display: flex; align-items: flex-end;
+  }
   .hero-right::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 20px,
-        rgba(0,0,0,0.08) 20px,
-        rgba(0,0,0,0.08) 21px
-      );
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 20px,
+      rgba(0,0,0,0.06) 20px, rgba(0,0,0,0.06) 21px
+    );
   }
-
   .hero-year {
-    position: absolute; top: 40px; right: 48px;
+    position: absolute; top: 28px; right: 36px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 6rem; font-weight: 900; line-height: 1;
-    color: rgba(0,0,0,0.2); letter-spacing: -0.04em;
-    user-select: none;
+    font-size: 6rem; font-weight: 900; color: rgba(0,0,0,0.18);
+    letter-spacing: -0.04em; user-select: none; line-height: 1;
   }
+  .hero-right-content { position: relative; z-index: 2; padding: 48px; width: 100%; }
+  .hero-desde {
+    position: absolute; top: 48px; left: 48px;
+    font-size: 0.68rem; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5); text-transform: uppercase;
+  }
+  .hero-quote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+    font-weight: 700; font-style: italic; line-height: 1.25;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-quote-author {
+    font-size: 0.78rem; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6); text-transform: uppercase;
+  }
+  .hero-quote-author strong { color: var(--white); }
 
   .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--red);
     margin-bottom: 24px;
     animation: fadeUp 0.7s ease both;
   }
-  .hero-tag::before {
-    content: ''; width: 28px; height: 2px; background: var(--red);
-  }
+  .hero-tag::before { content: ''; width: 28px; height: 2px; background: var(--red); }
 
   .hero-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(3.5rem, 5.5vw, 6rem);
     font-weight: 900; line-height: 0.95;
-    letter-spacing: -0.02em;
-    color: var(--white); text-transform: uppercase;
+    letter-spacing: -0.02em; color: var(--black);
+    text-transform: uppercase;
     animation: fadeUp 0.7s 0.1s ease both;
   }
-  .hero-title em {
-    font-style: italic; color: var(--red);
-  }
+  .hero-title em { font-style: italic; color: var(--red); }
 
   .hero-sub {
-    font-size: 1rem; font-weight: 300; line-height: 1.7;
-    color: rgba(255,255,255,0.55); max-width: 420px;
-    margin-top: 24px;
+    font-size: 1rem; line-height: 1.75; color: var(--mid);
+    max-width: 420px; margin-top: 24px;
     animation: fadeUp 0.7s 0.2s ease both;
   }
-  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .hero-sub strong { color: var(--dark); font-weight: 600; }
 
   .hero-actions {
-    display: flex; gap: 14px; align-items: center;
-    margin-top: 44px;
+    display: flex; gap: 16px; align-items: center; margin-top: 44px;
     animation: fadeUp 0.7s 0.3s ease both;
   }
 
@@ -183,78 +165,47 @@
     font-size: 1rem; font-weight: 700; letter-spacing: 0.06em;
     text-transform: uppercase;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
+    transition: background 0.2s, transform 0.2s; display: inline-block;
   }
-  .btn-red:hover { background: #e01535; transform: translateY(-2px); }
+  .btn-red:hover { background: #a80d26; transform: translateY(-2px); }
 
-  .btn-ghost {
-    color: var(--white); text-decoration: none;
-    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
-    border-bottom: 1px solid var(--muted);
-    padding-bottom: 2px;
+  .btn-outline {
+    color: var(--dark); text-decoration: none;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--border-dark); padding-bottom: 2px;
     transition: border-color 0.2s, color 0.2s;
   }
-  .btn-ghost:hover { color: var(--red); border-color: var(--red); }
+  .btn-outline:hover { color: var(--red); border-color: var(--red); }
 
   .hero-stats {
-    display: flex; gap: 40px;
-    margin-top: 64px; padding-top: 40px;
+    display: flex; gap: 40px; margin-top: 60px; padding-top: 40px;
     border-top: 1px solid var(--border);
     animation: fadeUp 0.7s 0.4s ease both;
   }
   .hero-stat-n {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 2.8rem; font-weight: 900; line-height: 1;
-    color: var(--white); letter-spacing: -0.03em;
+    color: var(--dark); letter-spacing: -0.03em;
   }
   .hero-stat-n span { color: var(--red); }
   .hero-stat-l {
-    font-size: 0.72rem; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-top: 4px;
+    font-size: 0.7rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px;
   }
-
-  .hero-right-content {
-    position: relative; z-index: 2;
-    padding: 48px; width: 100%;
-  }
-
-  .hero-quote {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-    font-weight: 700; line-height: 1.2;
-    color: var(--white); font-style: italic;
-    margin-bottom: 20px;
-  }
-  .hero-quote-author {
-    font-size: 0.8rem; letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.6); text-transform: uppercase;
-  }
-  .hero-quote-author strong { color: var(--white); }
-
-  .hero-desde {
-    position: absolute; top: 48px; left: 48px;
-    font-size: 0.7rem; letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.5); text-transform: uppercase;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .hero-desde::before { content: ''; width: 20px; height: 1px; background: rgba(255,255,255,0.3); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── SECTIONS ── */
+  /* SHARED */
   section { position: relative; z-index: 1; }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 52px; }
 
   .sec-label {
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--red);
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
   }
   .sec-label::before { content: ''; width: 24px; height: 2px; background: var(--red); }
 
@@ -262,490 +213,282 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(2.2rem, 3.5vw, 3.5rem);
     font-weight: 900; letter-spacing: -0.02em;
-    color: var(--white); text-transform: uppercase;
-    line-height: 1.0;
+    color: var(--dark); text-transform: uppercase; line-height: 1.0;
   }
 
-  /* ── MISSÃO ── */
+  /* MISSÃO */
   #missao {
     padding: 120px 0;
-    background: var(--black2);
+    background: var(--lighter);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
   }
-
-  .missao-inner {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
-  }
-
-  .missao-left {}
+  .missao-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
   .missao-big-quote {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1.4rem, 2.2vw, 2rem);
-    font-weight: 700; font-style: italic;
-    line-height: 1.35; color: var(--white);
-    border-left: 3px solid var(--red);
-    padding-left: 24px;
-    margin: 32px 0;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 700; font-style: italic; line-height: 1.35;
+    color: var(--dark); border-left: 3px solid var(--red);
+    padding-left: 24px; margin: 28px 0;
   }
+  .missao-text { font-size: 0.95rem; color: var(--mid); line-height: 1.8; margin-bottom: 14px; }
 
-  .missao-text {
-    font-size: 0.95rem; color: var(--muted); line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  .missao-team {
-    display: flex; gap: 16px; margin-top: 36px;
-  }
-  .team-member {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-  }
+  .missao-team { display: flex; gap: 20px; margin-top: 36px; }
+  .team-member { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .team-avatar {
-    width: 64px; height: 64px; border-radius: 50%;
-    border: 2px solid var(--red);
-    background: var(--card);
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 2px solid var(--red); background: var(--light);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 900; color: var(--red);
-    overflow: hidden;
+    font-size: 1.5rem; font-weight: 900; color: var(--red); overflow: hidden;
   }
-  .team-name {
-    font-size: 0.72rem; color: var(--muted);
-    letter-spacing: 0.06em; text-align: center;
-  }
+  .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .team-name { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; }
 
-  .missao-right {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
+  .missao-right { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .missao-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 4px; padding: 28px 24px;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative; overflow: hidden;
+    background: var(--white); border: 1px solid var(--border);
+    padding: 26px 22px; position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   }
   .missao-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--red); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
   }
-  .missao-card:hover { border-color: var(--border-red); transform: translateY(-4px); }
+  .missao-card:hover { border-color: rgba(200,16,46,0.25); transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
   .missao-card:hover::before { transform: scaleX(1); }
   .missao-card:first-child { grid-column: span 2; background: var(--red); border-color: transparent; }
-  .missao-card:first-child .mc-num { color: rgba(255,255,255,0.3); }
+  .missao-card:first-child .mc-num { color: rgba(255,255,255,0.2); }
   .missao-card:first-child .mc-title { color: var(--white); }
-  .missao-card:first-child .mc-text { color: rgba(255,255,255,0.75); }
+  .missao-card:first-child .mc-text { color: rgba(255,255,255,0.8); }
   .mc-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.5rem; font-weight: 900; color: rgba(255,255,255,0.08);
-    line-height: 1; margin-bottom: 12px;
+    font-size: 2.5rem; font-weight: 900; color: var(--border);
+    line-height: 1; margin-bottom: 10px;
   }
   .mc-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 800; color: var(--white);
-    text-transform: uppercase; letter-spacing: 0.02em;
-    margin-bottom: 8px;
+    font-size: 1rem; font-weight: 800; color: var(--dark);
+    text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 8px;
   }
-  .mc-text { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+  .mc-text { font-size: 0.82rem; color: var(--mid); line-height: 1.65; }
 
-  /* ── SOLUÇÕES ── */
-  #solucoes { padding: 120px 0; }
+  /* SOLUÇÕES */
+  #solucoes { padding: 120px 0; background: var(--white); }
+  .sol-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 52px; }
+  .sol-header p { font-size: 0.95rem; color: var(--mid); line-height: 1.75; }
 
-  .sol-header {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: end; margin-bottom: 64px;
-  }
-  .sol-header p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; }
-
-  .sol-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 0; border: 1px solid var(--border);
-  }
-
-  .sol-item {
-    padding: 36px 28px;
-    border-right: 1px solid var(--border);
-    transition: background 0.3s;
-    cursor: default;
-    position: relative;
-  }
+  .sol-grid { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--border); }
+  .sol-item { padding: 36px 22px; border-right: 1px solid var(--border); transition: background 0.3s; cursor: default; }
   .sol-item:last-child { border-right: none; }
-  .sol-item:hover { background: rgba(200,16,46,0.07); }
-
+  .sol-item:hover { background: var(--red-light); }
   .sol-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 3rem; font-weight: 900;
-    color: rgba(200,16,46,0.15); line-height: 1;
-    margin-bottom: 20px;
+    font-size: 3rem; font-weight: 900; color: rgba(200,16,46,0.1);
+    line-height: 1; margin-bottom: 14px;
   }
-  .sol-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
+  .sol-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
   .sol-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem; font-weight: 800; color: var(--white);
-    text-transform: uppercase; line-height: 1.2;
-    margin-bottom: 10px;
+    font-size: 1rem; font-weight: 800; color: var(--dark);
+    text-transform: uppercase; line-height: 1.2; margin-bottom: 10px;
   }
-  .sol-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+  .sol-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.65; }
 
   .sol-bottom {
-    margin-top: 0; padding: 28px 32px;
-    background: var(--red);
+    padding: 28px 32px; background: var(--red);
     display: flex; align-items: center; justify-content: space-between;
   }
-  .sol-bottom p {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 700; color: var(--white);
-    font-style: italic;
-  }
+  .sol-bottom p { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--white); font-style: italic; }
   .sol-bottom a {
     color: var(--white); text-decoration: none;
-    font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    border-bottom: 1px solid rgba(255,255,255,0.4);
-    padding-bottom: 2px; white-space: nowrap;
-    transition: border-color 0.2s;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px;
+    white-space: nowrap; transition: border-color 0.2s;
   }
   .sol-bottom a:hover { border-color: var(--white); }
 
-  /* ── CASES ── */
-  #cases {
-    padding: 120px 0;
-    background: var(--black2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .cases-header { margin-bottom: 56px; }
-
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-  }
-
+  /* CASES */
+  #cases { padding: 120px 0; background: var(--lighter); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cases-header { margin-bottom: 48px; }
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
   .case-card {
-    background: var(--card); padding: 36px 32px;
-    position: relative; overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
+    background: var(--white); padding: 36px 28px;
+    position: relative; overflow: hidden; transition: box-shadow 0.3s; cursor: default;
   }
-  .case-card:hover { background: var(--black3); }
-
+  .case-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); z-index: 2; }
   .case-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--red); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
   }
   .case-card:hover::after { transform: scaleX(1); }
-
   .case-cat {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--red);
-    margin-bottom: 16px;
+    text-transform: uppercase; color: var(--red); margin-bottom: 14px;
     display: flex; align-items: center; gap: 8px;
   }
   .case-cat::before { content: ''; width: 16px; height: 1px; background: var(--red); }
-
   .case-brand {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem; font-weight: 900; color: var(--white);
-    text-transform: uppercase; letter-spacing: -0.01em;
-    margin-bottom: 6px; line-height: 1;
+    font-size: 1.6rem; font-weight: 900; color: var(--dark);
+    text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 4px; line-height: 1;
   }
-
-  .case-channel {
-    font-size: 0.78rem; color: var(--muted);
-    margin-bottom: 20px;
-  }
-
-  .case-desc {
-    font-size: 0.85rem; color: rgba(255,255,255,0.5);
-    line-height: 1.65;
-  }
-
+  .case-channel { font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; }
+  .case-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
   .case-tag {
-    display: inline-block; margin-top: 20px;
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--red);
-    background: var(--red-glow); border: 1px solid var(--border-red);
-    padding: 4px 10px; border-radius: 2px;
+    display: inline-block; margin-top: 18px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red); background: var(--red-light);
+    border: 1px solid rgba(200,16,46,0.18); padding: 4px 10px;
   }
 
-  /* ── PARCEIROS ── */
-  #parceiros { padding: 100px 0; }
-
-  .parceiros-top {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 56px;
-  }
-
-  .parceiros-headline {
-    display: flex; align-items: baseline; gap: 16px;
-  }
-
+  /* PARCEIROS */
+  #parceiros { padding: 100px 0; background: var(--white); }
+  .parceiros-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
   .parceiros-big {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
     font-weight: 900; text-transform: uppercase;
-    color: var(--white); letter-spacing: -0.03em; line-height: 1;
+    color: var(--dark); letter-spacing: -0.03em; line-height: 1.05;
   }
   .parceiros-big span { color: var(--red); }
+  .parceiros-since { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 6px; }
 
-  .parceiros-since {
-    font-size: 0.75rem; color: var(--muted);
-    letter-spacing: 0.06em; align-self: flex-end;
-    margin-bottom: 8px;
-  }
-
-  .marcas-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    border: 1px solid var(--border);
-    gap: 0;
-  }
-
+  .marcas-grid { display: grid; grid-template-columns: repeat(7, 1fr); border: 1px solid var(--border); }
   .marca-item {
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 24px 16px;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 22px 12px;
     display: flex; align-items: center; justify-content: center;
-    min-height: 80px;
-    transition: background 0.25s;
-    cursor: default;
+    min-height: 76px; transition: background 0.25s; cursor: default;
   }
-  .marca-item:hover { background: rgba(200,16,46,0.06); }
-
+  .marca-item:hover { background: var(--red-light); }
   .marca-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; font-weight: 800;
-    color: var(--muted); text-transform: uppercase;
-    letter-spacing: 0.04em; text-align: center;
+    font-size: 0.82rem; font-weight: 800; color: var(--border-dark);
+    text-transform: uppercase; letter-spacing: 0.04em; text-align: center; line-height: 1.2;
     transition: color 0.25s;
-    line-height: 1.2;
   }
-  .marca-item:hover .marca-name { color: var(--white); }
+  .marca-item:hover .marca-name { color: var(--dark); }
 
-  /* ── CALENDÁRIO ── */
-  #calendario {
-    padding: 120px 0;
-    background: var(--black2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
+  /* CALENDÁRIO */
+  #calendario { padding: 120px 0; background: var(--lighter); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cal-header { margin-bottom: 48px; }
+  .cal-header p { font-size: 0.95rem; color: var(--mid); line-height: 1.7; max-width: 540px; margin-top: 14px; }
 
-  .cal-header { margin-bottom: 56px; }
-  .cal-header p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 540px; margin-top: 16px; }
-
-  .cal-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 2px; background: var(--border);
-  }
-
-  .cal-month {
-    background: var(--card); padding: 24px 20px;
-  }
+  .cal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); }
+  .cal-month { background: var(--white); padding: 24px 20px; }
   .cal-month-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 900; color: var(--red);
-    text-transform: uppercase; letter-spacing: 0.06em;
-    margin-bottom: 14px;
+    font-size: 1.05rem; font-weight: 900; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .cal-month-name .quarter {
-    font-size: 0.6rem; color: var(--muted); font-weight: 400;
-    letter-spacing: 0.1em;
-  }
+  .quarter { font-size: 0.58rem; color: var(--muted); font-weight: 400; letter-spacing: 0.1em; }
   .cal-events { list-style: none; }
   .cal-events li {
-    font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;
-    padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.75rem; color: var(--muted); line-height: 1.5;
+    padding: 3px 0; border-bottom: 1px solid var(--border);
     display: flex; align-items: baseline; gap: 6px;
   }
-  .cal-events li::before {
-    content: '—'; color: var(--red); font-size: 0.65rem; flex-shrink: 0;
-  }
-  .cal-events li.destaque { color: var(--white); font-weight: 600; }
-  .cal-events li.destaque::before { content: '★'; font-size: 0.6rem; }
+  .cal-events li::before { content: '—'; color: var(--border-dark); font-size: 0.65rem; flex-shrink: 0; }
+  .cal-events li.destaque { color: var(--dark); font-weight: 600; }
+  .cal-events li.destaque::before { content: '★'; color: var(--red); font-size: 0.6rem; }
 
-  /* ── CTA ── */
-  #cta {
-    padding: 0;
-    background: var(--black);
-  }
-
-  .cta-inner {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 420px;
-  }
-
+  /* CTA */
+  #cta { background: var(--white); }
+  .cta-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; border-top: 1px solid var(--border); }
   .cta-left {
-    background: var(--red);
-    padding: 80px 52px;
+    background: var(--red); padding: 80px 52px;
     display: flex; flex-direction: column; justify-content: center;
     position: relative; overflow: hidden;
   }
   .cta-left::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      -45deg, transparent, transparent 20px,
-      rgba(0,0,0,0.06) 20px, rgba(0,0,0,0.06) 21px
-    );
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(0,0,0,0.06) 20px, rgba(0,0,0,0.06) 21px);
   }
   .cta-left-content { position: relative; z-index: 2; }
-
   .cta-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    font-weight: 900; text-transform: uppercase;
-    color: var(--white); line-height: 0.95; letter-spacing: -0.02em;
-    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 900; text-transform: uppercase;
+    color: var(--white); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 24px;
   }
-  .cta-sub {
-    font-size: 0.95rem; color: rgba(255,255,255,0.75);
-    line-height: 1.7; margin-bottom: 36px; max-width: 380px;
-  }
-
+  .cta-sub { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 36px; max-width: 380px; }
   .btn-white {
-    display: inline-block;
-    background: var(--white); color: var(--red);
+    display: inline-block; background: var(--white); color: var(--red);
     padding: 16px 36px; text-decoration: none;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 800; letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 1rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
     transition: opacity 0.2s, transform 0.2s;
   }
-  .btn-white:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-white:hover { opacity: 0.92; transform: translateY(-2px); }
 
   .cta-right {
-    background: var(--black3);
-    padding: 80px 52px;
+    background: var(--lighter); padding: 80px 52px;
     display: flex; flex-direction: column; justify-content: center;
     border-left: 1px solid var(--border);
   }
-  .cta-contact-label {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 32px;
-  }
-  .contact-line {
-    display: flex; align-items: flex-start; gap: 16px;
-    margin-bottom: 24px;
-  }
-  .contact-icon {
-    width: 40px; height: 40px; flex-shrink: 0;
-    border: 1px solid var(--border-red);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-    background: var(--red-glow);
-  }
-  .contact-info small {
-    font-size: 0.65rem; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.1em; display: block;
-    margin-bottom: 2px;
-  }
-  .contact-info strong {
-    font-size: 0.95rem; color: var(--white); font-weight: 400;
-  }
-  .contact-info a {
-    font-size: 0.95rem; color: var(--white); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .cta-contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+  .contact-line { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+  .contact-icon { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid rgba(200,16,46,0.2); display: flex; align-items: center; justify-content: center; font-size: 1rem; background: var(--red-light); }
+  .contact-info small { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
+  .contact-info strong { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
+  .contact-info a { font-size: 0.95rem; color: var(--dark); text-decoration: none; transition: color 0.2s; }
   .contact-info a:hover { color: var(--red); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 52px 0 28px;
-  }
-
-  .footer-inner {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 48px; padding-bottom: 40px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 28px;
-  }
-
-  .footer-brand {}
-  .footer-brand .logo { font-size: 1.8rem; display: block; margin-bottom: 14px; }
-  .footer-brand p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; max-width: 260px; }
-
-  .footer-links h4 {
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 18px;
-  }
-  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-links ul a {
-    font-size: 0.84rem; color: rgba(255,255,255,0.45); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links ul a:hover { color: var(--red); }
-
+  /* FOOTER */
+  footer { background: var(--dark); padding: 52px 0 28px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+  .footer-brand .logo { color: var(--white); font-size: 1.6rem; display: block; margin-bottom: 14px; }
+  .footer-brand p { font-size: 0.82rem; color: #777; line-height: 1.7; max-width: 260px; }
   .footer-social { display: flex; gap: 10px; margin-top: 20px; }
-  .soc-btn {
-    width: 36px; height: 36px;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); text-decoration: none; font-size: 0.75rem;
-    font-weight: 700;
-    transition: border-color 0.2s, color 0.2s;
-  }
+  .soc-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: #666; text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: border-color 0.2s, color 0.2s; }
   .soc-btn:hover { border-color: var(--red); color: var(--red); }
-
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-bottom p { font-size: 0.75rem; color: var(--muted); }
+  .footer-links h4 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #555; margin-bottom: 18px; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links ul a { font-size: 0.84rem; color: #666; text-decoration: none; transition: color 0.2s; }
+  .footer-links ul a:hover { color: var(--red); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.75rem; color: #555; }
   .footer-bottom span { color: var(--red); }
 
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0; transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 1024px) {
     #hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-right { display: none; }
     .hero-left::after { display: none; }
     .sol-grid { grid-template-columns: repeat(3, 1fr); }
     .marcas-grid { grid-template-columns: repeat(5, 1fr); }
-    .cal-grid { grid-template-columns: repeat(3, 1fr); }
+    .cal-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-inner { grid-template-columns: 1fr; }
     .cta-right { border-left: none; border-top: 1px solid var(--border); }
+    .missao-inner { grid-template-columns: 1fr; gap: 48px; }
+    .sol-header { grid-template-columns: 1fr; }
   }
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
     .container { padding: 0 24px; }
     .hero-left { padding: 60px 24px; }
-    .missao-inner { grid-template-columns: 1fr; gap: 48px; }
     .missao-right { grid-template-columns: 1fr; }
     .missao-card:first-child { grid-column: span 1; }
     .sol-grid { grid-template-columns: 1fr 1fr; }
     .cases-grid { grid-template-columns: 1fr; }
     .marcas-grid { grid-template-columns: repeat(3, 1fr); }
-    .cal-grid { grid-template-columns: repeat(2, 1fr); }
+    .sol-bottom { flex-direction: column; gap: 16px; }
+    .parceiros-top { flex-direction: column; gap: 16px; align-items: flex-start; }
     .footer-inner { flex-direction: column; gap: 32px; }
-    .sol-bottom { flex-direction: column; gap: 16px; text-align: center; }
   }
   @media (max-width: 480px) {
     .sol-grid { grid-template-columns: 1fr; }
     .marcas-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .cal-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -767,45 +510,24 @@
 <section id="hero">
   <div class="hero-left">
     <div class="hero-tag">Desde 2021 · Parceria Estratégica</div>
-    <h1 class="hero-title">
-      Sua marca<br>
-      na <em>audiência</em><br>
-      certa.
-    </h1>
-    <p class="hero-sub">
-      A ab²house <strong>não vende mídia.</strong><br>
-      Entregamos acesso — conectando marcas às audiências mais relevantes do Brasil.
-    </p>
+    <h1 class="hero-title">Sua marca<br>na <em>audiência</em><br>certa.</h1>
+    <p class="hero-sub">A ab²house <strong>não vende mídia.</strong> Entregamos acesso — conectando marcas às audiências mais relevantes do Brasil.</p>
     <div class="hero-actions">
       <a href="#cases" class="btn-red">Ver Conexões →</a>
-      <a href="#cta" class="btn-ghost">Fale com a equipe</a>
+      <a href="#cta" class="btn-outline">Fale com a equipe</a>
     </div>
     <div class="hero-stats">
-      <div>
-        <div class="hero-stat-n" data-target="4"><span>+</span>4</div>
-        <div class="hero-stat-l">Anos de mercado</div>
-      </div>
-      <div>
-        <div class="hero-stat-n" data-target="30"><span>+</span>30</div>
-        <div class="hero-stat-l">Marcas atendidas</div>
-      </div>
-      <div>
-        <div class="hero-stat-n">5</div>
-        <div class="hero-stat-l">Frentes estratégicas</div>
-      </div>
-      <div>
-        <div class="hero-stat-n">Sul<span>/</span>SE</div>
-        <div class="hero-stat-l">Cobertura regional</div>
-      </div>
+      <div><div class="hero-stat-n">4<span>+</span></div><div class="hero-stat-l">Anos de mercado</div></div>
+      <div><div class="hero-stat-n">30<span>+</span></div><div class="hero-stat-l">Marcas atendidas</div></div>
+      <div><div class="hero-stat-n">5</div><div class="hero-stat-l">Frentes estratégicas</div></div>
+      <div><div class="hero-stat-n">Sul<span>/</span>SE</div><div class="hero-stat-l">Cobertura regional</div></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-year">2026</div>
     <div class="hero-right-content">
       <div class="hero-desde">Aline, Antonio e Juliana</div>
-      <p class="hero-quote">
-        "Reunimos nossa experiência em uma estrutura enxuta, próxima e feita para se adaptar a cada parceiro."
-      </p>
+      <p class="hero-quote">"Reunimos nossa experiência em uma estrutura enxuta, próxima e feita para se adaptar a cada parceiro."</p>
       <p class="hero-quote-author">Fundadores da <strong>ab²house</strong></p>
     </div>
   </div>
@@ -818,51 +540,20 @@
       <div class="missao-left reveal">
         <div class="sec-label">Quem somos</div>
         <h2 class="sec-title">Estratégia.<br>Conexão.<br>Entrega.</h2>
-        <blockquote class="missao-big-quote">
-          "Nossa missão é simplificar a conexão entre veículos, projetos, talentos e clientes."
-        </blockquote>
-        <p class="missao-text">
-          A ab²house nasceu da experiência acumulada de profissionais que viveram o mercado de mídia por dentro — e decidiram criar algo diferente: uma estrutura enxuta, ágil e genuinamente focada no resultado do parceiro.
-        </p>
-        <p class="missao-text">
-          Valorizamos relações genuínas, estratégia inteligente e excelência real na entrega. Não somos uma agência tradicional — somos a ponte entre a sua marca e a audiência que importa.
-        </p>
+        <blockquote class="missao-big-quote">"Nossa missão é simplificar a conexão entre veículos, projetos, talentos e clientes."</blockquote>
+        <p class="missao-text">A ab²house nasceu da experiência acumulada de profissionais que viveram o mercado de mídia por dentro — e decidiram criar algo diferente: uma estrutura enxuta, ágil e genuinamente focada no resultado do parceiro.</p>
+        <p class="missao-text">Valorizamos relações genuínas, estratégia inteligente e excelência real na entrega. Não somos uma agência tradicional — somos a ponte entre a sua marca e a audiência que importa.</p>
         <div class="missao-team">
-          <div class="team-member">
-            <div class="team-avatar">A</div>
-            <div class="team-name">Aline</div>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar">A</div>
-            <div class="team-name">Antonio</div>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar">J</div>
-            <div class="team-name">Juliana</div>
-          </div>
+          <div class="team-member"><div class="team-avatar">A</div><div class="team-name">Aline</div></div>
+          <div class="team-member"><div class="team-avatar">A</div><div class="team-name">Antonio</div></div>
+          <div class="team-member"><div class="team-avatar">J</div><div class="team-name">Juliana</div></div>
         </div>
       </div>
       <div class="missao-right reveal">
-        <div class="missao-card">
-          <div class="mc-num">01</div>
-          <div class="mc-title">Cobertura focada na Região Sul</div>
-          <div class="mc-text">Atendimento comercial dedicado a clientes e agências do Sul do Brasil, com profundo conhecimento dos veículos e audiências locais.</div>
-        </div>
-        <div class="missao-card">
-          <div class="mc-num">02</div>
-          <div class="mc-title">Estrutura Enxuta</div>
-          <div class="mc-text">Decisões rápidas, interlocução direta com os sócios e total adaptabilidade às necessidades de cada parceiro.</div>
-        </div>
-        <div class="missao-card">
-          <div class="mc-num">03</div>
-          <div class="mc-title">Relações Genuínas</div>
-          <div class="mc-text">Não vendemos pacotes prontos. Construímos projetos sob medida com base em objetivos reais de negócio.</div>
-        </div>
-        <div class="missao-card">
-          <div class="mc-num">04</div>
-          <div class="mc-title">Resultados Mensuráveis</div>
-          <div class="mc-text">Cada conexão é planejada para gerar dados, engajamento e retorno real — não apenas presença de marca.</div>
-        </div>
+        <div class="missao-card"><div class="mc-num">01</div><div class="mc-title">Cobertura Região Sul</div><div class="mc-text">Atendimento comercial dedicado a clientes e agências do Sul, com profundo conhecimento dos veículos e audiências locais.</div></div>
+        <div class="missao-card"><div class="mc-num">02</div><div class="mc-title">Estrutura Enxuta</div><div class="mc-text">Decisões rápidas, interlocução direta com os sócios e total adaptabilidade às necessidades de cada parceiro.</div></div>
+        <div class="missao-card"><div class="mc-num">03</div><div class="mc-title">Relações Genuínas</div><div class="mc-text">Não vendemos pacotes prontos. Construímos projetos sob medida com base em objetivos reais de negócio.</div></div>
+        <div class="missao-card"><div class="mc-num">04</div><div class="mc-title">Resultados Mensuráveis</div><div class="mc-text">Cada conexão é planejada para gerar dados, engajamento e retorno real — não apenas presença de marca.</div></div>
       </div>
     </div>
   </div>
@@ -872,43 +563,15 @@
 <section id="solucoes">
   <div class="container">
     <div class="sol-header reveal">
-      <div>
-        <div class="sec-label">O que fazemos</div>
-        <h2 class="sec-title">Um f5 em nossas<br>soluções estratégicas.</h2>
-      </div>
+      <div><div class="sec-label">O que fazemos</div><h2 class="sec-title">Um f5 em nossas<br>soluções estratégicas.</h2></div>
       <p>Cinco frentes complementares que cobrem todo o ecossistema de mídia — do digital ao presencial, do regional ao nacional.</p>
     </div>
     <div class="sol-grid reveal">
-      <div class="sol-item">
-        <div class="sol-num">01</div>
-        <span class="sol-icon">📱</span>
-        <div class="sol-name">Conteúdo Digital</div>
-        <div class="sol-desc">Conteúdo que gera experiência e promove envolvimento real das audiências com as marcas parceiras.</div>
-      </div>
-      <div class="sol-item">
-        <div class="sol-num">02</div>
-        <span class="sol-icon">📻</span>
-        <div class="sol-name">Audiência Regional</div>
-        <div class="sol-desc">Liderança em CE, PE, BH e Vale dos Sinos/RS — acesso a ouvintes e torcedores com voz e influência local.</div>
-      </div>
-      <div class="sol-item">
-        <div class="sol-num">03</div>
-        <span class="sol-icon">🎯</span>
-        <div class="sol-name">Planning Estratégico</div>
-        <div class="sol-desc">Planning net ou local com controle total just in time — adaptado ao ritmo e orçamento de cada campanha.</div>
-      </div>
-      <div class="sol-item">
-        <div class="sol-num">04</div>
-        <span class="sol-icon">🏆</span>
-        <div class="sol-name">MKT Esportivo</div>
-        <div class="sol-desc">Visibilidade e conexão dentro e fora das quadras nos maiores eventos esportivos do país.</div>
-      </div>
-      <div class="sol-item">
-        <div class="sol-num">05</div>
-        <span class="sol-icon">🌆</span>
-        <div class="sol-name">OOH & DOOH</div>
-        <div class="sol-desc">Mídia exterior e digital out-of-home — pontos de contato com audiência de alto impacto e relevância.</div>
-      </div>
+      <div class="sol-item"><div class="sol-num">01</div><span class="sol-icon">📱</span><div class="sol-name">Conteúdo Digital</div><div class="sol-desc">Conteúdo que gera experiência e promove envolvimento real das audiências com as marcas parceiras.</div></div>
+      <div class="sol-item"><div class="sol-num">02</div><span class="sol-icon">📻</span><div class="sol-name">Audiência Regional</div><div class="sol-desc">Liderança em CE, PE, BH e Vale dos Sinos/RS — acesso a ouvintes com voz e influência local.</div></div>
+      <div class="sol-item"><div class="sol-num">03</div><span class="sol-icon">🎯</span><div class="sol-name">Planning Estratégico</div><div class="sol-desc">Planning net ou local com controle total just in time — adaptado ao ritmo de cada campanha.</div></div>
+      <div class="sol-item"><div class="sol-num">04</div><span class="sol-icon">🏆</span><div class="sol-name">MKT Esportivo</div><div class="sol-desc">Visibilidade e conexão dentro e fora das quadras nos maiores eventos esportivos do país.</div></div>
+      <div class="sol-item"><div class="sol-num">05</div><span class="sol-icon">🌆</span><div class="sol-name">OOH & DOOH</div><div class="sol-desc">Mídia exterior e digital out-of-home com pontos de alto impacto e relevância para sua audiência.</div></div>
     </div>
     <div class="sol-bottom reveal">
       <p>"Não vendemos mídia. Nós entregamos acesso."</p>
@@ -920,60 +583,14 @@
 <!-- CASES -->
 <section id="cases">
   <div class="container">
-    <div class="cases-header reveal">
-      <div class="sec-label">Conexões realizadas</div>
-      <h2 class="sec-title">Campanhas &<br>projetos que entregamos.</h2>
-    </div>
+    <div class="cases-header reveal"><div class="sec-label">Conexões realizadas</div><h2 class="sec-title">Campanhas &<br>projetos que entregamos.</h2></div>
     <div class="cases-grid reveal">
-
-      <div class="case-card">
-        <div class="case-cat">Conteúdo Digital · Webedia</div>
-        <div class="case-brand">Oscar 2026</div>
-        <div class="case-channel">AdoroCinema + Britânia</div>
-        <p class="case-desc">Integração editorial e patrocínio durante a cobertura do Oscar 2026 — conectando a marca Britânia à maior audiência de cinema do Brasil.</p>
-        <span class="case-tag">Webedia · JSE</span>
-      </div>
-
-      <div class="case-card">
-        <div class="case-cat">Conteúdo Digital · Webedia</div>
-        <div class="case-brand">MasterChef</div>
-        <div class="case-channel">Tudo Gostoso + Britânia</div>
-        <p class="case-desc">Ativação no maior portal de receitas do Brasil durante a temporada do MasterChef — gerando conteúdo branded com altíssimo engajamento.</p>
-        <span class="case-tag">Tudo Gostoso · Portal</span>
-      </div>
-
-      <div class="case-card">
-        <div class="case-cat">MKT Esportivo</div>
-        <div class="case-brand">Seleção Brasileira</div>
-        <div class="case-channel">Amistoso + Pneustore</div>
-        <p class="case-desc">Visibilidade de marca em amistoso oficial da Seleção Brasileira — placares, backdrops e ativações presenciais com a Pneustore.</p>
-        <span class="case-tag">Estádio · Broadcast</span>
-      </div>
-
-      <div class="case-card">
-        <div class="case-cat">MKT Esportivo</div>
-        <div class="case-brand">Copa Nordeste</div>
-        <div class="case-channel">Paraflu + Placares</div>
-        <p class="case-desc">Patrocínio e visibilidade em placares durante a Copa Nordeste — alcançando milhões de torcedores no estádio e na transmissão.</p>
-        <span class="case-tag">Copa Nordeste · TV</span>
-      </div>
-
-      <div class="case-card">
-        <div class="case-cat">MKT de Influência</div>
-        <div class="case-brand">Galvão Bueno</div>
-        <div class="case-channel">Play9 + Stihl</div>
-        <p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p>
-        <span class="case-tag">911 plays · TikTok</span>
-      </div>
-
-      <div class="case-card">
-        <div class="case-cat">OOH / DOOH</div>
-        <div class="case-brand">O Boticário</div>
-        <div class="case-channel">Sinergy · Painéis Digitais</div>
-        <p class="case-desc">Campanha DOOH para O Boticário com painéis digitais de alto impacto em pontos estratégicos — parceria Sinergy com visibilidade garantida.</p>
-        <span class="case-tag">DOOH · OOH</span>
-      </div>
-
+      <div class="case-card"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">Oscar 2026</div><div class="case-channel">AdoroCinema + Britânia</div><p class="case-desc">Integração editorial e patrocínio durante a cobertura do Oscar 2026 — conectando a Britânia à maior audiência de cinema do Brasil.</p><span class="case-tag">Webedia · JSE</span></div>
+      <div class="case-card"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">MasterChef</div><div class="case-channel">Tudo Gostoso + Britânia</div><p class="case-desc">Ativação no maior portal de receitas do Brasil durante a temporada do MasterChef — conteúdo branded com altíssimo engajamento.</p><span class="case-tag">Portal · Branded</span></div>
+      <div class="case-card"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Seleção Brasileira</div><div class="case-channel">Amistoso + Pneustore</div><p class="case-desc">Visibilidade em amistoso oficial da Seleção Brasileira — placares, backdrops e ativações presenciais com alto alcance.</p><span class="case-tag">Estádio · Broadcast</span></div>
+      <div class="case-card"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Copa Nordeste</div><div class="case-channel">Paraflu + Placares</div><p class="case-desc">Patrocínio em placares durante a Copa Nordeste — alcançando milhões de torcedores no estádio e na transmissão.</p><span class="case-tag">Copa Nordeste · TV</span></div>
+      <div class="case-card"><div class="case-cat">MKT de Influência</div><div class="case-brand">Galvão Bueno</div><div class="case-channel">Play9 + Stihl</div><p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p><span class="case-tag">911 plays · TikTok</span></div>
+      <div class="case-card"><div class="case-cat">OOH / DOOH</div><div class="case-brand">O Boticário</div><div class="case-channel">Sinergy · Painéis Digitais</div><p class="case-desc">Campanha DOOH para O Boticário com painéis digitais de alto impacto em pontos estratégicos via Sinergy.</p><span class="case-tag">DOOH · OOH</span></div>
     </div>
   </div>
 </section>
@@ -984,9 +601,7 @@
     <div class="parceiros-top reveal">
       <div>
         <div class="sec-label">Marcas que confiam</div>
-        <div class="parceiros-headline">
-          <div class="parceiros-big">(ab²house)<br><span>conectada</span></div>
-        </div>
+        <div class="parceiros-big">(ab²house) <span>conectada</span></div>
         <div class="parceiros-since">com grandes marcas desde 2021</div>
       </div>
     </div>
@@ -1029,58 +644,38 @@
     <div class="cal-header reveal">
       <div class="sec-label">Calendário 2026</div>
       <h2 class="sec-title">Audiência garantida<br>durante 12 meses.</h2>
-      <p>Eventos e datas comemorativas com projetos desenvolvidos para conectar marcas a milhares de ouvintes, torcedores e comunidades digitais.</p>
+      <p>Eventos e datas comemorativas com projetos para conectar marcas a milhares de ouvintes, torcedores e comunidades digitais.</p>
     </div>
     <div class="cal-grid reveal">
       <div class="cal-month">
-        <div class="cal-month-name">Jan / Fev / Mar <span class="quarter">Q1</span></div>
+        <div class="cal-month-name">Jan · Fev · Mar <span class="quarter">Q1</span></div>
         <ul class="cal-events">
-          <li>Verão</li>
-          <li class="destaque">Carnaval</li>
-          <li>Volta às aulas</li>
-          <li>Campeonatos regionais de futebol</li>
-          <li>Oscar</li>
-          <li>Dia da Mulher</li>
+          <li>Verão</li><li class="destaque">Carnaval</li><li>Volta às aulas</li>
+          <li>Campeonatos regionais</li><li>Oscar</li><li>Dia da Mulher</li>
         </ul>
       </div>
       <div class="cal-month">
-        <div class="cal-month-name">Abr / Mai / Jun <span class="quarter">Q2</span></div>
+        <div class="cal-month-name">Abr · Mai · Jun <span class="quarter">Q2</span></div>
         <ul class="cal-events">
-          <li>Páscoa</li>
-          <li>Dia das Mães</li>
-          <li>Dia dos Namorados</li>
-          <li class="destaque">Brasileirão Start</li>
-          <li>Festas de São João</li>
-          <li>APAS</li>
+          <li>Páscoa</li><li>Dia das Mães</li><li>Dia dos Namorados</li>
+          <li class="destaque">Brasileirão Start</li><li>São João</li><li>APAS</li>
           <li class="destaque">Copa do Mundo 2026 ★</li>
         </ul>
       </div>
       <div class="cal-month">
-        <div class="cal-month-name">Jul / Ago / Set <span class="quarter">Q3</span></div>
+        <div class="cal-month-name">Jul · Ago · Set <span class="quarter">Q3</span></div>
         <ul class="cal-events">
-          <li>Dia do Amigo (20/07)</li>
-          <li>Dia dos Avós (26/07)</li>
-          <li>Portal</li>
-          <li>Dia dos Pais</li>
-          <li>Dia do Cliente (15/09)</li>
-          <li>Expointer</li>
-          <li>Semana Farroupilha</li>
-          <li>AGAS · Super Bahia</li>
+          <li>Dia do Amigo (20/07)</li><li>Dia dos Avós (26/07)</li>
+          <li>Dia dos Pais</li><li>Dia do Cliente (15/09)</li>
+          <li>Expointer</li><li>Semana Farroupilha</li><li>AGAS · Super Bahia</li>
         </ul>
       </div>
       <div class="cal-month">
-        <div class="cal-month-name">Out / Nov / Dez <span class="quarter">Q4</span></div>
+        <div class="cal-month-name">Out · Nov · Dez <span class="quarter">Q4</span></div>
         <ul class="cal-events">
-          <li>Outubro Rosa</li>
-          <li>Oktoberfest</li>
-          <li>Dia do Nordestino (08/10)</li>
-          <li>Dia das Crianças</li>
-          <li>Novembro Azul</li>
-          <li class="destaque">Black Friday</li>
-          <li>Dezembro Vermelho</li>
-          <li>BGS · Natal</li>
-          <li>Start Verão 2027</li>
-          <li>Superminas Food Show</li>
+          <li>Outubro Rosa</li><li>Oktoberfest</li><li>Dia das Crianças</li>
+          <li>Novembro Azul</li><li class="destaque">Black Friday</li>
+          <li>Dezembro Vermelho</li><li>BGS · Natal</li><li>Superminas Food Show</li>
         </ul>
       </div>
     </div>
@@ -1099,34 +694,10 @@
     </div>
     <div class="cta-right">
       <div class="cta-contact-label">Canais de contato</div>
-      <div class="contact-line">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-info">
-          <small>E-mail</small>
-          <a href="mailto:ab2house@ab2house.com">ab2house@ab2house.com</a>
-        </div>
-      </div>
-      <div class="contact-line">
-        <div class="contact-icon">📱</div>
-        <div class="contact-info">
-          <small>Instagram</small>
-          <a href="https://instagram.com/ab2house" target="_blank">@ab2house</a>
-        </div>
-      </div>
-      <div class="contact-line">
-        <div class="contact-icon">📍</div>
-        <div class="contact-info">
-          <small>Atuação</small>
-          <strong>Região Sul · Sudeste · Nacional</strong>
-        </div>
-      </div>
-      <div class="contact-line">
-        <div class="contact-icon">🗓️</div>
-        <div class="contact-info">
-          <small>Fundação</small>
-          <strong>2021 · 4+ anos de mercado</strong>
-        </div>
-      </div>
+      <div class="contact-line"><div class="contact-icon">✉️</div><div class="contact-info"><small>E-mail</small><a href="mailto:ab2house@ab2house.com">ab2house@ab2house.com</a></div></div>
+      <div class="contact-line"><div class="contact-icon">📱</div><div class="contact-info"><small>Instagram</small><a href="https://instagram.com/ab2house" target="_blank">@ab2house</a></div></div>
+      <div class="contact-line"><div class="contact-icon">📍</div><div class="contact-info"><small>Atuação</small><strong>Região Sul · Sudeste · Nacional</strong></div></div>
+      <div class="contact-line"><div class="contact-icon">🗓️</div><div class="contact-info"><small>Fundação</small><strong>2021 · 4+ anos de mercado</strong></div></div>
     </div>
   </div>
 </section>
@@ -1158,40 +729,29 @@
         <h4>Contato</h4>
         <ul>
           <li><a href="mailto:ab2house@ab2house.com">ab2house@ab2house.com</a></li>
-          <li><a href="#">@ab2house</a></li>
+          <li><a href="https://instagram.com/ab2house">@ab2house</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>(ab²house) © 2025 — Todos os direitos reservados</p>
-      <p>Feito com <span>♥</span> em BH</p>
+      <p>(ab²house) © 2026 — Todos os direitos reservados</p>
+      <p>Feito com <span>♥</span> para conectar marcas</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // SCROLL REVEAL
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // NAV SCROLL
   window.addEventListener('scroll', () => {
-    const nav = document.getElementById('mainNav');
-    nav.style.background = window.scrollY > 60
-      ? 'rgba(10,10,10,0.98)'
-      : 'rgba(10,10,10,0.92)';
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // STAGGER delays para grids
   document.querySelectorAll('.sol-item, .case-card, .marca-item, .cal-month, .missao-card').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.05) + 's';
+    el.style.transitionDelay = (i * 0.04) + 's';
   });
 </script>
 </body>

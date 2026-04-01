@@ -390,7 +390,7 @@
   .logos-marquee:hover .logos-track { animation-play-state: paused; }
   .marca-item {
     flex: 0 0 auto;
-    min-width: 170px;
+    width: 170px;
     padding: 16px 22px;
     display: flex;
     align-items: center;
@@ -404,6 +404,7 @@
     border-color: rgba(200,16,46,0.2);
     transform: translateY(-2px);
   }
+  .marca-item img { max-width: 130px; max-height: 36px; width: auto; height: auto; object-fit: contain; display: block; }
   .marca-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.82rem; font-weight: 800; color: var(--border-dark);
@@ -512,7 +513,7 @@
     .hero-right { display: none; }
     .hero-left::after { display: none; }
     .sol-grid { grid-template-columns: repeat(3, 1fr); }
-    .marca-item { min-width: 150px; }
+    .marca-item { width: 150px; }
     .cal-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-inner { grid-template-columns: 1fr; }
     .cta-right { border-left: none; border-top: 1px solid var(--border); }
@@ -529,7 +530,7 @@
     .sol-grid { grid-template-columns: 1fr 1fr; }
     .cases-grid { grid-template-columns: 1fr; }
     .logos-track { animation-duration: 68s; }
-    .marca-item { min-width: 130px; padding: 14px 16px; }
+    .marca-item { width: 130px; padding: 14px 16px; }
     .sol-bottom { flex-direction: column; gap: 16px; }
     .parceiros-top { flex-direction: column; gap: 16px; align-items: center; text-align: center; }
     .footer-inner { flex-direction: column; gap: 32px; }
@@ -599,15 +600,15 @@
         <div class="marca-item"><div class="marca-name">Engie</div></div>
         <div class="marca-item"><div class="marca-name">Stihl</div></div>
         <div class="marca-item"><div class="marca-name">Desco Atacado</div></div>
-        <div class="marca-item"><div class="marca-name">Ademicon</div></div>
+        <div class="marca-item"><img src="assets/ademicon.svg" alt="Ademicon" loading="lazy"></div>
         <div class="marca-item"><div class="marca-name">Pegada</div></div>
         <div class="marca-item"><div class="marca-name">Dakota</div></div>
-        <div class="marca-item"><div class="marca-name">PanVel</div></div>
+        <div class="marca-item"><img src="assets/panvel.svg" alt="PanVel" loading="lazy"></div>
         <div class="marca-item"><div class="marca-name">PneuStore</div></div>
         <div class="marca-item"><div class="marca-name">Bom Jesus</div></div>
         <div class="marca-item"><div class="marca-name">Unifael</div></div>
         <div class="marca-item"><div class="marca-name">mrJack.bet</div></div>
-        <div class="marca-item"><div class="marca-name">KTO</div></div>
+        <div class="marca-item"><img src="assets/kto.png" alt="KTO" loading="lazy"></div>
         <div class="marca-item"><div class="marca-name">Asmas</div></div>
         <div class="marca-item"><div class="marca-name">Bottero</div></div>
         <div class="marca-item"><div class="marca-name">Continental</div></div>
@@ -627,15 +628,15 @@
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Engie</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Stihl</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Desco Atacado</div></div>
-        <div class="marca-item" aria-hidden="true"><div class="marca-name">Ademicon</div></div>
+        <div class="marca-item" aria-hidden="true"><img src="assets/ademicon.svg" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Pegada</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Dakota</div></div>
-        <div class="marca-item" aria-hidden="true"><div class="marca-name">PanVel</div></div>
+        <div class="marca-item" aria-hidden="true"><img src="assets/panvel.svg" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">PneuStore</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Bom Jesus</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Unifael</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">mrJack.bet</div></div>
-        <div class="marca-item" aria-hidden="true"><div class="marca-name">KTO</div></div>
+        <div class="marca-item" aria-hidden="true"><img src="assets/kto.png" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Asmas</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Bottero</div></div>
         <div class="marca-item" aria-hidden="true"><div class="marca-name">Continental</div></div>

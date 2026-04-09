@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #C8102E;
-    --red-light: rgba(200,16,46,0.07);
-    --red-mid: rgba(200,16,46,0.15);
+    --red: #ff3131;
+    --red-light: rgba(255,49,49,0.08);
+    --red-mid: rgba(255,49,49,0.18);
     --black: #0f0f0f;
     --dark: #1a1a1a;
     --mid: #555;
@@ -309,14 +309,65 @@
   .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
   .case-card {
     background: var(--white); padding: 36px 28px;
-    position: relative; overflow: hidden; transition: box-shadow 0.3s; cursor: default;
+    position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; cursor: default;
+    isolation: isolate;
   }
-  .case-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); z-index: 2; }
+  .case-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    transform: scale(1.02);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 0;
+  }
+  .case-card > * { position: relative; z-index: 1; }
+  .case-card:hover { box-shadow: 0 12px 34px rgba(0,0,0,0.08); transform: translateY(-4px); z-index: 2; }
   .case-card::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
     background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    z-index: 1;
   }
   .case-card:hover::after { transform: scaleX(1); }
+  .case-card:hover::before { opacity: 0.2; transform: scale(1.05); }
+  .case-card.case-oscar::before {
+    background-image:
+      radial-gradient(circle at 78% 18%, rgba(255,49,49,0.55), transparent 25%),
+      linear-gradient(135deg, rgba(21,21,21,0.88), rgba(21,21,21,0.25)),
+      url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1200&q=80');
+  }
+  .case-card.case-masterchef::before {
+    background-image:
+      radial-gradient(circle at 18% 78%, rgba(255,49,49,0.4), transparent 24%),
+      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(15,15,15,0.16)),
+      url('assets/master.webp');
+  }
+  .case-card.case-selecao::before {
+    background-image:
+      radial-gradient(circle at 78% 20%, rgba(255,49,49,0.45), transparent 22%),
+      linear-gradient(135deg, rgba(15,15,15,0.18), rgba(255,255,255,0.12)),
+      url('assets/selecao.webp');
+  }
+  .case-card.case-copanordeste::before {
+    background-image:
+      radial-gradient(circle at 80% 16%, rgba(255,49,49,0.45), transparent 22%),
+      linear-gradient(135deg, rgba(15,15,15,0.18), rgba(255,255,255,0.12)),
+      url('assets/grenal.png');
+  }
+  .case-card.case-galvao::before {
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,49,49,0.48), transparent 26%),
+      linear-gradient(135deg, rgba(21,21,21,0.78), rgba(21,21,21,0.1)),
+      url('assets/galvao.png');
+  }
+  .case-card.case-boticario::before {
+    background-image:
+      radial-gradient(circle at 75% 22%, rgba(255,49,49,0.42), transparent 24%),
+      linear-gradient(135deg, rgba(21,21,21,0.3), rgba(255,255,255,0.12)),
+      url('assets/malbec.png');
+  }
   .case-cat {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--red); margin-bottom: 14px;
@@ -341,10 +392,18 @@
   #parceiros { padding: 100px 0; background: var(--white); }
   .parceiros-top { display: flex; justify-content: center; align-items: center; margin-bottom: 48px; text-align: center; }
   .parceiros-big {
+    display: inline-flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(2.5rem, 4.5vw, 5rem);
     font-weight: 900; text-transform: uppercase;
     color: var(--dark); letter-spacing: -0.03em; line-height: 1.05;
+  }
+  .parceiros-big img {
+    height: clamp(42px, 5.2vw, 70px);
+    width: auto;
+    display: block;
+    filter: saturate(1) contrast(1.02);
+    transform: translateY(3px);
   }
   .parceiros-big span { color: var(--red); }
   .parceiros-since { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 6px; }
@@ -472,7 +531,8 @@
   }
   .cta-contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
   .contact-line { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-  .contact-icon { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid rgba(200,16,46,0.2); display: flex; align-items: center; justify-content: center; font-size: 1rem; background: var(--red-light); }
+  .contact-icon { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid rgba(200,16,46,0.2); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--red); background: var(--red-light); }
+  .contact-icon svg { width: 18px; height: 18px; display: block; }
   .contact-info small { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
   .contact-info strong { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
   .contact-info a { font-size: 0.95rem; color: var(--dark); text-decoration: none; transition: color 0.2s; }
@@ -564,7 +624,6 @@
       <a href="#cta" class="btn-outline">Fale com a equipe</a>
     </div>
     <div class="hero-stats">
-      <div><div class="hero-stat-n">4<span>+</span></div><div class="hero-stat-l">Anos de mercado</div></div>
       <div><div class="hero-stat-n">30<span>+</span></div><div class="hero-stat-l">Marcas atendidas</div></div>
       <div><div class="hero-stat-n">5</div><div class="hero-stat-l">Frentes estratégicas</div></div>
       <div><div class="hero-stat-n">Sul<span>/</span>SE</div><div class="hero-stat-l">Cobertura regional</div></div>
@@ -583,7 +642,7 @@
     <div class="parceiros-top reveal">
       <div>
         <div class="sec-label">Marcas que confiam</div>
-        <div class="parceiros-big">(ab²house) <span>conectada</span></div>
+        <div class="parceiros-big"><img src="assets/logo2.png" alt="ab²house"><span>conectada</span></div>
         <div class="parceiros-since">com grandes marcas desde 2021</div>
       </div>
     </div>
@@ -608,7 +667,6 @@
         <div class="marca-item"><img src="assets/lasalle.png" alt="La Salle" loading="lazy"></div>
         <div class="marca-item"><img src="assets/uniasselvi.svg" alt="Uniasselvi" loading="lazy"></div>
         <div class="marca-item"><img src="assets/pompeia.png" alt="Pompéia" loading="lazy"></div>
-        <div class="marca-item"><img src="assets/star.svg" alt="Star Channel" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><img src="assets/engie.svg" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><img src="assets/stihl-1.svg" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><img src="assets/desco.png" alt="" loading="lazy"></div>
@@ -628,8 +686,7 @@
         <div class="marca-item" aria-hidden="true"><img src="assets/lasalle.png" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><img src="assets/uniasselvi.svg" alt="" loading="lazy"></div>
         <div class="marca-item" aria-hidden="true"><img src="assets/pompeia.png" alt="" loading="lazy"></div>
-        <div class="marca-item" aria-hidden="true"><img src="assets/star.svg" alt="" loading="lazy"></div>
-      </div>
+       </div>
     </div>
   </div>
 </section>
@@ -684,14 +741,14 @@
 <!-- CASES -->
 <section id="cases">
   <div class="container">
-    <div class="cases-header reveal"><div class="sec-label">Conexões realizadas</div><h2 class="sec-title">Campanhas &<br>projetos que entregamos.</h2></div>
+    <div class="cases-header reveal"><div class="sec-label">Cases em destaque</div><h2 class="sec-title">Projetos que ganharam<br>presença e contexto.</h2></div>
     <div class="cases-grid reveal">
-      <div class="case-card"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">Oscar 2026</div><div class="case-channel">AdoroCinema + Britânia</div><p class="case-desc">Integração editorial e patrocínio durante a cobertura do Oscar 2026 — conectando a Britânia à maior audiência de cinema do Brasil.</p><span class="case-tag">Webedia · JSE</span></div>
-      <div class="case-card"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">MasterChef</div><div class="case-channel">Tudo Gostoso + Britânia</div><p class="case-desc">Ativação no maior portal de receitas do Brasil durante a temporada do MasterChef — conteúdo branded com altíssimo engajamento.</p><span class="case-tag">Portal · Branded</span></div>
-      <div class="case-card"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Seleção Brasileira</div><div class="case-channel">Amistoso + Pneustore</div><p class="case-desc">Visibilidade em amistoso oficial da Seleção Brasileira — placares, backdrops e ativações presenciais com alto alcance.</p><span class="case-tag">Estádio · Broadcast</span></div>
-      <div class="case-card"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Copa Nordeste</div><div class="case-channel">Paraflu + Placares</div><p class="case-desc">Patrocínio em placares durante a Copa Nordeste — alcançando milhões de torcedores no estádio e na transmissão.</p><span class="case-tag">Copa Nordeste · TV</span></div>
-      <div class="case-card"><div class="case-cat">MKT de Influência</div><div class="case-brand">Galvão Bueno</div><div class="case-channel">Play9 + Stihl</div><p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p><span class="case-tag">911 plays · TikTok</span></div>
-      <div class="case-card"><div class="case-cat">OOH / DOOH</div><div class="case-brand">O Boticário</div><div class="case-channel">Sinergy · Painéis Digitais</div><p class="case-desc">Campanha DOOH para O Boticário com painéis digitais de alto impacto em pontos estratégicos via Sinergy.</p><span class="case-tag">DOOH · OOH</span></div>
+      <div class="case-card case-oscar"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">Oscar 2026</div><div class="case-channel">AdoroCinema + Britânia</div><p class="case-desc">Integração editorial e patrocínio durante a cobertura do Oscar 2026 — conectando a Britânia à maior audiência de cinema do Brasil.</p><span class="case-tag">Webedia · JSE</span></div>
+      <div class="case-card case-masterchef"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">MasterChef</div><div class="case-channel">Tudo Gostoso + Britânia</div><p class="case-desc">Ativação no maior portal de receitas do Brasil durante a temporada do MasterChef — conteúdo branded com altíssimo engajamento.</p><span class="case-tag">Portal · Branded</span></div>
+      <div class="case-card case-selecao"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Seleção Brasileira</div><div class="case-channel">Amistoso + Pneustore</div><p class="case-desc">Visibilidade em amistoso oficial da Seleção Brasileira — placares, backdrops e ativações presenciais com alto alcance.</p><span class="case-tag">Estádio · Broadcast</span></div>
+      <div class="case-card case-copanordeste"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Campeonato Gaúcho</div><div class="case-channel">Desco + Paraflu</div><p class="case-desc">Patrocínio em placares durante o Campeonato Gaúcho — conectando as marcas à força do clássico e da audiência regional na transmissão.</p><span class="case-tag">Gauchão · TV</span></div>
+      <div class="case-card case-galvao"><div class="case-cat">MKT de Influência</div><div class="case-brand">Galvão Bueno</div><div class="case-channel">Play9 + Stihl</div><p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p><span class="case-tag">911 plays · TikTok</span></div>
+      <div class="case-card case-boticario"><div class="case-cat">OOH / DOOH</div><div class="case-brand">O Boticário</div><div class="case-channel">Sinergy · Painéis Digitais</div><p class="case-desc">Campanha DOOH para O Boticário com painéis digitais de alto impacto em pontos estratégicos via Sinergy.</p><span class="case-tag">DOOH · OOH</span></div>
     </div>
   </div>
 </section>
@@ -753,9 +810,8 @@
     <div class="cta-right">
       <div class="cta-contact-label">Canais de contato</div>
       <div class="contact-line"><div class="contact-icon">✉️</div><div class="contact-info"><small>E-mail</small><a href="mailto:ab2house@ab2house.com">ab2house@ab2house.com</a></div></div>
-      <div class="contact-line"><div class="contact-icon">📱</div><div class="contact-info"><small>Instagram</small><a href="https://instagram.com/ab2house" target="_blank">@ab2house</a></div></div>
-      <div class="contact-line"><div class="contact-icon">📍</div><div class="contact-info"><small>Atuação</small><strong>Região Sul · Sudeste · Nacional</strong></div></div>
-      <div class="contact-line"><div class="contact-icon">🗓️</div><div class="contact-info"><small>Fundação</small><strong>2021 · 4+ anos de mercado</strong></div></div>
+      <div class="contact-line"><div class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="0.8" fill="currentColor" stroke="none"></circle></svg></div><div class="contact-info"><small>Instagram</small><a href="https://instagram.com/ab2house" target="_blank">@ab2house</a></div></div>
+            <div class="contact-line"><div class="contact-icon">📞</div><div class="contact-info"><small>Celular</small><strong>A preencher</strong></div></div>
     </div>
   </div>
 </section>
@@ -765,13 +821,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#" class="logo">(ab<sup>2</sup><span>house</span>)</a>
         <p>Parceria estratégica que conecta marcas às audiências relevantes. Não vendemos mídia — entregamos acesso.</p>
-        <div class="footer-social">
-          <a href="#" class="soc-btn">ig</a>
-          <a href="#" class="soc-btn">in</a>
-          <a href="#" class="soc-btn">fb</a>
-        </div>
       </div>
       <div class="footer-links">
         <h4>Navegação</h4>

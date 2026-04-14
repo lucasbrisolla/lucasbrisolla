@@ -308,66 +308,23 @@
   .cases-header { margin-bottom: 48px; }
   .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
   .case-card {
-    background: var(--white); padding: 36px 28px;
-    position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; cursor: default;
-    isolation: isolate;
+    background: var(--white);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.3s, transform 0.3s; cursor: default;
   }
-  .case-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.07;
-    transform: scale(1.02);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    z-index: 0;
-  }
-  .case-card > * { position: relative; z-index: 1; }
   .case-card:hover { box-shadow: 0 12px 34px rgba(0,0,0,0.08); transform: translateY(-4px); z-index: 2; }
   .case-card::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
     background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
-    z-index: 1;
   }
   .case-card:hover::after { transform: scaleX(1); }
-  .case-card:hover::before { opacity: 0.13; transform: scale(1.05); }
-  .case-card.case-oscar::before {
-    background-image:
-      radial-gradient(circle at 78% 18%, rgba(255,49,49,0.55), transparent 25%),
-      linear-gradient(135deg, rgba(21,21,21,0.88), rgba(21,21,21,0.25)),
-      url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1200&q=80');
-  }
-  .case-card.case-masterchef::before {
-    background-image:
-      radial-gradient(circle at 18% 78%, rgba(255,49,49,0.4), transparent 24%),
-      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(15,15,15,0.16)),
-      url('assets/master.webp');
-  }
-  .case-card.case-selecao::before {
-    background-image:
-      radial-gradient(circle at 78% 20%, rgba(255,49,49,0.45), transparent 22%),
-      linear-gradient(135deg, rgba(15,15,15,0.18), rgba(255,255,255,0.12)),
-      url('assets/selecao.webp');
-  }
-  .case-card.case-copanordeste::before {
-    background-image:
-      radial-gradient(circle at 80% 16%, rgba(255,49,49,0.45), transparent 22%),
-      linear-gradient(135deg, rgba(15,15,15,0.18), rgba(255,255,255,0.12)),
-      url('assets/grenal.png');
-  }
-  .case-card.case-galvao::before {
-    background-image:
-      radial-gradient(circle at 12% 18%, rgba(255,49,49,0.48), transparent 26%),
-      linear-gradient(135deg, rgba(21,21,21,0.78), rgba(21,21,21,0.1)),
-      url('assets/galvao.png');
-  }
-  .case-card.case-boticario::before {
-    background-image:
-      radial-gradient(circle at 75% 22%, rgba(255,49,49,0.42), transparent 24%),
-      linear-gradient(135deg, rgba(21,21,21,0.3), rgba(255,255,255,0.12)),
-      url('assets/malbec.png');
-  }
+  .case-content { padding: 36px 28px 24px; flex: 1; display: flex; flex-direction: column; }
+  .case-content .case-tag { margin-top: auto; align-self: flex-start; }
+  .case-img { width: 100%; height: 180px; overflow: hidden; }
+  .case-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .case-galvao .case-img img { object-position: top; }
+  .case-card:hover .case-img img { transform: scale(1.04); }
   .case-cat {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--red); margin-bottom: 14px;
@@ -742,9 +699,18 @@
   <div class="container">
     <div class="cases-header reveal"><div class="sec-label">Cases em destaque</div><h2 class="sec-title">Projetos que ganharam<br>presença e contexto.</h2></div>
     <div class="cases-grid reveal">
-      <div class="case-card case-oscar"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">Patrocínio Oscar 2026</div><div class="case-channel">AdoroCinema + Britânia</div><p class="case-desc">O AdoroCinema criou um projeto especial durante a cobertura do Oscar 2026 — conectando marcas à maior audiência de cinema do Brasil em um momento de alta valorização do cinema nacional.</p><span class="case-tag">Webedia · JSE</span></div>
-      <div class="case-card case-galvao"><div class="case-cat">MKT de Influência</div><div class="case-brand">Campanha Galvão Bueno</div><div class="case-channel">Play9 + Stihl</div><p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p><span class="case-tag">911 plays · TikTok</span></div>
-      <div class="case-card case-copanordeste"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Patrocínio Campeonato Gaúcho</div><div class="case-channel">Desco + Paraflu</div><p class="case-desc">Patrocínio em placares e backdrops durante o Campeonato Gaúcho — presença de marca conectada à paixão do público gaúcho pelo futebol, dentro e fora das transmissões ao vivo.</p><span class="case-tag">Gauchão · TV</span></div>
+      <div class="case-card case-oscar">
+        <div class="case-content"><div class="case-cat">Conteúdo Digital · Webedia</div><div class="case-brand">Patrocínio Oscar 2026</div><div class="case-channel">AdoroCinema + Britânia</div><p class="case-desc">O AdoroCinema criou um projeto especial durante a cobertura do Oscar 2026 — conectando marcas à maior audiência de cinema do Brasil em um momento de alta valorização do cinema nacional.</p><span class="case-tag">Webedia · JSE</span></div>
+        <div class="case-img"><img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1200&q=80" alt="Oscar 2026" loading="lazy"></div>
+      </div>
+      <div class="case-card case-galvao">
+        <div class="case-content"><div class="case-cat">MKT de Influência</div><div class="case-brand">Campanha Galvão Bueno</div><div class="case-channel">Play9 + Stihl</div><p class="case-desc">Campanha com Galvão Bueno para a Stihl via Play9 — conteúdo orgânico de alto alcance conectando a marca ao público do narrador.</p><span class="case-tag">911 plays · TikTok</span></div>
+        <div class="case-img"><img src="assets/galvao.png" alt="Campanha Galvão Bueno" loading="lazy"></div>
+      </div>
+      <div class="case-card case-copanordeste">
+        <div class="case-content"><div class="case-cat">MKT Esportivo</div><div class="case-brand">Patrocínio Campeonato Gaúcho</div><div class="case-channel">Desco + Paraflu</div><p class="case-desc">Patrocínio em placares e backdrops durante o Campeonato Gaúcho — presença de marca conectada à paixão do público gaúcho pelo futebol, dentro e fora das transmissões ao vivo.</p><span class="case-tag">Gauchão · TV</span></div>
+        <div class="case-img"><img src="assets/grenal.png" alt="Campeonato Gaúcho" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
